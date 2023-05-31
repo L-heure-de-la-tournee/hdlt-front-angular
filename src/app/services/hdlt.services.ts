@@ -5,6 +5,7 @@ import { getErrorMessage } from '../Utils/utils';
 import { ResponseType, Response } from '../models/responses';
 import { ToastService } from './toast.services';
 import { AuthentificationService } from './auth.services';
+import { StatusType } from '../models/hdlt';
 
 @Injectable({
   providedIn: 'root'
@@ -27,12 +28,13 @@ export class HDLTServices {
         this.databases = new Databases(this.client);
     }
 
-    async GetStatusTypes(): Promise<string[]>{
-        let types:string[] = [];
+    async GetStatusTypes(): Promise<StatusType[]>{
+        let types:StatusType[] = [];
         try{
             let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS_TYPE);
             response.documents.forEach((document:any) => {
-                types.push(document.name);
+                let type = {id: document.$id, name: document.name}
+                types.push(type);
             }
             );
             console.log(types);

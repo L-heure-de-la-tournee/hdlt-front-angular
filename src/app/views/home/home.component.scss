@@ -1,0 +1,21 @@
+@import "src/app/styles/variables.scss";
+
+section{
+    min-height: calc(100vh - $nav-height);
+    gap:3rem;
+}
+
+img{
+    width: 100%;
+    max-width: 500px;
+}
+h1{
+    font-size: 7rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+p{
+    font-size: 2rem;
+    font-style: italic;
+}

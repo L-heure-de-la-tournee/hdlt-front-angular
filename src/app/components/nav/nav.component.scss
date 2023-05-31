@@ -18,6 +18,14 @@ nav{
 
     a,p{
         text-decoration: none;
+        &.active{
+            border-bottom: 2px solid $text1;
+            &.white-btn{
+                background-color: $text1;
+                color: $background;
+            }
+        }
+
     }
 
     .nav-icon{

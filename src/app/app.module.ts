@@ -13,6 +13,8 @@ import { NewStatusComponent } from './views/new-status/new-status.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HistoryComponent } from './views/history/history.component';
+import { RulesComponent } from './views/rules/rules.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     OngoingComponent,
     NewStatusComponent,
     ProfileComponent,
-    NavComponent
+    NavComponent,
+    HistoryComponent,
+    RulesComponent
   ],
   imports: [
     BrowserModule,

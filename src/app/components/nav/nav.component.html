@@ -12,6 +12,7 @@
         <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/history" routerLinkActive="active">History</a>
         <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/rules" routerLinkActive="active">Rules</a>
         <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/profile" routerLinkActive="active">Profile</a>
+        <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/new-status" routerLinkActive="active" class="white-btn">New status</a>
     </div>
     <div class="right nav-icon" >
         <img *ngIf="!phoneMenuOpen" (click)="phoneMenuOpen=true"  src="assets/icons/navbar.svg" alt="open menu">
