@@ -114,8 +114,13 @@ export class AuthentificationService {
     }
 
     GetUserEmail():string{
-        return this.session.email;
+        return (this.session == null) ? "" : this.session.email;
     }
+
+    IsVerified(): boolean{
+        return (this.session == null) ? false : this.session.emailVerification;
+    }
+
 
     async UpdateName(name:string): Promise<Response>{
         let val:string;

@@ -11,11 +11,11 @@
     <div class="right content" [ngClass]="{'active':phoneMenuOpen}" >
         <a *ngIf="!isConnected()" (click)="phoneMenuOpen=false" routerLink="/login" routerLinkActive="active" class="white-btn" >Login</a>
         <a *ngIf="!isConnected()" (click)="phoneMenuOpen=false" routerLink="/signup" routerLinkActive="active" class="white-btn">Sign-up</a>
-        <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/ongoing" routerLinkActive="active">On-going</a>
-        <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/history" routerLinkActive="active">History</a>
-        <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/rules" routerLinkActive="active">Rules</a>
+        <a *ngIf="isConnected() && isVerified()" (click)="phoneMenuOpen=false" routerLink="/ongoing" routerLinkActive="active">On-going</a>
+        <a *ngIf="isConnected() && isVerified()" (click)="phoneMenuOpen=false" routerLink="/history" routerLinkActive="active">History</a>
+        <a *ngIf="isConnected() && isVerified()" (click)="phoneMenuOpen=false" routerLink="/rules" routerLinkActive="active">Rules</a>
         <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/profile" routerLinkActive="active">Profile</a>
-        <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/new-status" routerLinkActive="active" class="white-btn">New status</a>
+        <a *ngIf="isConnected() && isVerified()" (click)="phoneMenuOpen=false" routerLink="/new-status" routerLinkActive="active" class="white-btn">New status</a>
     </div>
     <div class="right nav-icon" >
         <img *ngIf="!phoneMenuOpen" (click)="phoneMenuOpen=true"  src="assets/icons/navbar.svg" alt="open menu">

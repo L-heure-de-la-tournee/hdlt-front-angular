@@ -16,4 +16,8 @@ export class NavComponent {
     return this.authService.isConnected;
   }
 
+  isVerified():boolean{
+    return this.authService.IsVerified();
+  }
+
 }
