@@ -8,4 +8,6 @@ export interface Status {
     type: StatusType;
     name: string;
     date: Date;
+    completed: boolean;
+    username: string;
 }

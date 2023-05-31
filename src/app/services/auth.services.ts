@@ -27,13 +27,13 @@ export class AuthentificationService {
         this.CheckConnection();
     }
 
-    async CreateAccount(email:string,password:string): Promise<Response>{
+    async CreateAccount(email:string,password:string,username:string=""): Promise<Response>{
         const account = new Account(this.client);
         let val:string;
         let type:ResponseType;
 
         try{
-            await account.create(ID.unique(),email,password)
+            await account.create(ID.unique(),email,password,username)
             val = "The account has been created";
             type = ResponseType.Success;
         }catch(error){

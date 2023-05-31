@@ -1,10 +1,10 @@
 <section class="flex-col">
     <div class="flex-col group">
-        <h2>Profile</h2>
+        <h2>{{username}} <span *ngIf="!verified">- not verified</span></h2>
         <div class="flex-col">
-            <p>Email: {{email}}</p>
-            <input [(ngModel)]="username" placeholder="name">
-            <button (click)="UpdateName()" class="white-btn">Update Name</button>
+            <p>{{email}}</p>
+            <p *ngIf="!verified">you need to be manually verified to use the website... just ask</p>
+            <p>just contact the dev to update the account for now</p>
         </div>
     </div>
 

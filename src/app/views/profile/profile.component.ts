@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
 
   email!:string;
   username:string = "";
+  verified=false;
 
   constructor(private auth:AuthentificationService,private router:Router) {}
 
@@ -19,7 +20,7 @@ export class ProfileComponent implements OnInit {
     await this.auth.CheckConnection();
     this.username = this.auth.GetUserName()
     this.email = this.auth.GetUserEmail();
-
+    this.verified = this.auth.IsVerified();
   }
 
   async logout(){
@@ -28,15 +29,5 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(["/home"]);
     }
   }
-
-  async UpdateName(){
-    console.log("updating name",this.username)
-    await this.auth.UpdateName(this.username);
-  }
-
-
-
-
-
 
 }

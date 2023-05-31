@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Client, Account, ID, Databases } from "appwrite";
+import { Client, Account, ID, Databases, Query, Functions } from "appwrite";
 import { environment } from 'src/environments/environment';
 import { getErrorMessage } from '../Utils/utils';
 import { ResponseType, Response } from '../models/responses';
@@ -17,6 +17,7 @@ export class HDLTServices {
     session!:any;
     isConnected!:boolean;
     databases!:Databases;
+    functions!:Functions;
 
     constructor(private toast : ToastService, private auth: AuthentificationService) {
         this.isConnected=false;
@@ -26,6 +27,7 @@ export class HDLTServices {
         .setProject(environment.PROJECT_ID) // Your project ID
         ;
         this.databases = new Databases(this.client);
+        this.functions = new Functions(this.client);
     }
 
     async GetStatusTypes(): Promise<StatusType[]>{
@@ -37,8 +39,6 @@ export class HDLTServices {
                 types.push(type);
             }
             );
-            console.log(types);
-            console.log(response);
         }
         catch(error){
             console.log(error);
@@ -50,10 +50,12 @@ export class HDLTServices {
         let res:Response;
 
         try{
+            let username = this.auth.GetUserName();
             let statusToUpload = {	
                 statusType: status.type,
                 name: status.name,
-                date: status.date
+                date: status.date,
+                username: username,
             };
             await this.databases.createDocument(environment.DATABASE_ID, environment.STATUS, ID.unique(), statusToUpload);
             res = {type: ResponseType.Success, value: "Status created"};
@@ -81,6 +83,24 @@ export class HDLTServices {
         this.toast.Show(res.value, res.type);
         return res;
     }
+
+    async GetOnGoingStatus(): Promise<Status[]>{
+        let statuses:Status[] = [];
+        try{
+            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('completed', false)]);
+            response.documents.forEach((document:any) => {
+                let status = {id: document.$id, type: document.statusType, name: document.name, date: document.date, completed: document.completed,username: document.user}
+                statuses.push(status);
+            }
+            );
+            console.log(response);
+        }
+        catch(error){
+            console.log(error);
+        }
+        return statuses;
+    }
+
 
 
    

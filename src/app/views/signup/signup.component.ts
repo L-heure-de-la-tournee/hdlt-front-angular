@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit, OnDestroy  {
       return;
     }
 
-    let response = await this.authService.CreateAccount(this.signupForm.value.email,this.signupForm.value.password);
+    let response = await this.authService.CreateAccount(this.signupForm.value.email,this.signupForm.value.password,this.signupForm.value.username);
 
     if(response.type == ResponseType.Success){
       this.router.navigate(['/login']);
@@ -40,6 +40,7 @@ export class SignupComponent implements OnInit, OnDestroy  {
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
       email: [null,[Validators.required,Validators.email]],
+      username: [null,[Validators.required,Validators.maxLength(200),Validators.minLength(3)]],
       password: [null,[Validators.required,Validators.minLength(8)]],
       passwordVerification: [null,[Validators.required,Validators.minLength(8)]]
     }, passwordMatchValidator);
