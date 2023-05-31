@@ -1,1 +1,12 @@
-<p>new-status works!</p>
+<div class="fullscreen-center" style="gap:2rem">
+    <form [formGroup]="statusForm">
+        <h1>New Status</h1>
+        <input type="text" formControlName="name" class="form-control" id="email" placeholder="Status ?">
+        <select formControlName="type" id="" placeholder="status type">
+            <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
+        </select>
+        <input type="date" formControlName="date" class="form-control" id="password" placeholder="date">
+        <button type="submit" (click)="onSubmitForm()" class="white-btn" [disabled]="statusForm.invalid">Submit</button>
+    </form>
+    <img class="illustration" src="assets/illustrations/undraw_beer_xg5f.svg" alt="login illustration">
+</div>

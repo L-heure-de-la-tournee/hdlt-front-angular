@@ -5,7 +5,7 @@ import { getErrorMessage } from '../Utils/utils';
 import { ResponseType, Response } from '../models/responses';
 import { ToastService } from './toast.services';
 import { AuthentificationService } from './auth.services';
-import { StatusType } from '../models/hdlt';
+import { Status, StatusType } from '../models/hdlt';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +44,42 @@ export class HDLTServices {
             console.log(error);
         }
         return types;
+    }
+
+    async CreateStatus(status:Status): Promise<Response>{
+        let res:Response;
+
+        try{
+            let statusToUpload = {	
+                statusType: status.type,
+                name: status.name,
+                date: status.date
+            };
+            await this.databases.createDocument(environment.DATABASE_ID, environment.STATUS, ID.unique(), statusToUpload);
+            res = {type: ResponseType.Success, value: "Status created"};
+        }
+        catch(error){
+            res = {type: ResponseType.Error, value: getErrorMessage(error)};
+        }
+        this.toast.Show(res.value, res.type);
+        return res;
+    }
+
+    async CompleteStatus(statusId:string): Promise<Response>{
+        let res:Response;
+
+        try{
+            let statusToUpload = {	
+                completed: true
+            };
+            await this.databases.updateDocument(environment.DATABASE_ID, environment.STATUS, statusId, statusToUpload);
+            res = {type: ResponseType.Success, value: "Status completed"};
+        }
+        catch(error){
+            res = {type: ResponseType.Error, value: getErrorMessage(error)};
+        }
+        this.toast.Show(res.value, res.type);
+        return res;
     }
 
 
