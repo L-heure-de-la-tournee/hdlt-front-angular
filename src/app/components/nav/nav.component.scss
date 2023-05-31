@@ -49,6 +49,9 @@ nav{
         .small{ 
             font-size: 1rem;
         }
+        @include width-under(500px){
+            display: none;
+        }
     }
     
     .left{

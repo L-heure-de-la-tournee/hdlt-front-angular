@@ -1,4 +1,5 @@
 @import "src/app/styles/variables.scss";
+@import "src/app/styles/mixins.scss";
 
 section{
     min-height: calc(100vh - $nav-height - 50px);
@@ -8,14 +9,26 @@ section{
 img{
     width: 100%;
     max-width: 500px;
+    @include width-under(650px){
+        height: 30vh;
+        width: auto;
+    }
 }
 h1{
     font-size: 7rem;
     font-weight: 700;
     text-align: center;
+    @include width-under(650px){
+        font-size: 5rem;
+    }
 }
 
 p{
     font-size: 2rem;
     font-style: italic;
+    text-align: center;
+    @include width-under(650px){
+        font-size: 1rem;
+    }
 }
+

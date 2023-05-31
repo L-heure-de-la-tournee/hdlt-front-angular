@@ -1,6 +1,14 @@
 section{
     justify-content: flex-start;
-    padding: 2rem 1rem;
+    padding: 0rem 1rem;
+    padding-bottom: 2rem;
+
+    h1{
+        font-size: 3rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+
     article{
         width: 100%;
         max-width: 900px;
