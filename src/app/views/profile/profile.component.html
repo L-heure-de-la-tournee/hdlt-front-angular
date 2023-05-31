@@ -1,1 +1,18 @@
-<p>profile works!</p>
+<section class="flex-col">
+    <div class="flex-col group">
+        <h2>Profile</h2>
+        <div class="flex-col">
+            <p>Email: {{email}}</p>
+            <input [(ngModel)]="username" placeholder="name">
+            <button (click)="UpdateName()" class="white-btn">Update Name</button>
+        </div>
+    </div>
+
+    <div class="flex-col group">
+        <h2>Danger Zone</h2>
+        <div class="flex-col">
+            <button (click)="logout()" class="black-btn">Logout</button>
+        </div>
+    </div>
+
+</section>

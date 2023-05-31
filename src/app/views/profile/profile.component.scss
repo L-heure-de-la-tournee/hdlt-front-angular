@@ -1,0 +1,21 @@
+@import "src/app/styles/variables.scss";
+
+section{
+    justify-content: space-between;
+    min-height: 70vh;
+    gap: .5rem;
+}
+
+input{
+    max-width: 200px;
+}
+
+.group{
+    width: 100%;
+    div{
+        width: 100%;
+        padding: 1rem;
+        max-width: 500px;
+        border:solid 3px $text1;
+    }
+}

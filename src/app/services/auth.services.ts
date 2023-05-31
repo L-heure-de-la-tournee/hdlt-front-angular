@@ -109,6 +109,31 @@ export class AuthentificationService {
         return (this.session == null) ? "" : this.session.$id;
     }
 
+    GetUserName():string{
+        return (this.session == null) ? "" : this.session.name;
+    }
+
+    GetUserEmail():string{
+        return this.session.email;
+    }
+
+    async UpdateName(name:string): Promise<Response>{
+        let val:string;
+        let type:ResponseType;
+
+        try {
+            await this.account.updateName(name);
+            val = "Name updated";
+            type = ResponseType.Success;
+        } catch (error) {
+            val = getErrorMessage(error);
+            type = ResponseType.Error;
+        }
+
+        this.toast.Show(val,type);
+        return {value:val,type:type};
+    }
+
     DeleteAccount(){
         //TODO
     }

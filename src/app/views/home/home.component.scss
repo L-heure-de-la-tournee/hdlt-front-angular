@@ -1,7 +1,7 @@
 @import "src/app/styles/variables.scss";
 
 section{
-    min-height: calc(100vh - $nav-height);
+    min-height: calc(100vh - $nav-height - 50px);
     gap:3rem;
 }
 
