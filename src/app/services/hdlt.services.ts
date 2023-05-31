@@ -89,8 +89,9 @@ export class HDLTServices {
         try{
             let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('completed', false)]);
             response.documents.forEach((document:any) => {
-                let status = {id: document.$id, type: document.statusType, name: document.name, date: document.date, completed: document.completed,username: document.user}
+                let status = {id: document.$id, type: document.statusType.name, name: document.name, date: new Date(document.date), completed: document.completed,username: document.username}
                 statuses.push(status);
+                console.log("status", status);
             }
             );
             console.log(response);

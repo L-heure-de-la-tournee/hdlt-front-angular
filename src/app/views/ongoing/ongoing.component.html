@@ -1,2 +1,14 @@
-<p>ongoing works!</p>
-<p *ngFor="let s of ongoing">{{s}}</p>
+<section class="flex-col">
+    <article *ngFor="let status of ongoing" class="flex-row">
+        <div>
+            <h2>{{status.username}} <span id="date">- {{status.date.toLocaleDateString("fr")}}</span> </h2>
+            <p id="type">{{status.type}}</p>
+            <p id="name">"{{status.name}}"</p>
+        </div>
+        <div>
+            <button class="white-btn">Payée !</button>
+        </div>
+
+    </article>
+
+</section>

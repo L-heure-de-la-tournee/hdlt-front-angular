@@ -1,0 +1,24 @@
+
+section{
+    width: 100%;
+    article{
+        justify-content: space-between;
+        width: calc(100% - 1rem);
+        max-width: 500px;
+        h2{
+            font-weight: 500;
+        }
+        #date{
+            font-size: .9rem;
+            font-weight: 600;
+        }
+        #name{
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        #type{
+            font-size: .9rem;
+            font-weight: 600;
+        }
+    }
+}
