@@ -3,9 +3,9 @@
 
 nav{
     z-index: 100;
-    height: $nav-height;
+    height: calc($nav-height + .2rem);
     width: calc(100% - 1rem);
-    padding: 0 .5rem;
+    padding: 0.5rem;
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -42,7 +42,13 @@ nav{
 
     .logo{
         font-weight: bold;
-        font-size: 1.5rem;
+        font-size: 2.5rem;
+        align-items: flex-start;
+        gap:0;
+        font-weight: 500;
+        .small{ 
+            font-size: 1rem;
+        }
     }
     
     .left{
