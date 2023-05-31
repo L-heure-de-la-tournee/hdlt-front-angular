@@ -1,0 +1,11 @@
+<div class="fullscreen-center" style="gap:2rem">
+    <form [formGroup]="loginForm">
+        <h1>Login</h1>
+        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email">
+        <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+        <p *ngIf="errorInForm" class="error-message" >{{errorMessage}}</p>
+        <button type="submit" (click)="onSubmitForm()" class="btn btn-primary" [disabled]="loginForm.invalid">Submit</button>
+    </form>
+    <img class="illustration" src="assets/illustrations/undraw_login_re_4vu2.svg" alt="login illustration">
+</div>
+

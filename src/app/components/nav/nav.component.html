@@ -1,0 +1,20 @@
+<nav>
+    <!-- Logo & user type -->
+    <div class="left">
+        <a routerLink="/" class="logo" >HDLT</a>
+    </div>
+
+    <!-- Connected -->
+    <div class="right content" [ngClass]="{'active':phoneMenuOpen}" >
+        <a *ngIf="!isConnected()" (click)="phoneMenuOpen=false" routerLink="/login" routerLinkActive="active" class="white-btn" >Login</a>
+        <a *ngIf="!isConnected()" (click)="phoneMenuOpen=false" routerLink="/signup" routerLinkActive="active" class="white-btn">Sign-up</a>
+        <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/ongoing" routerLinkActive="active">On-going</a>
+        <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/history" routerLinkActive="active">History</a>
+        <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/rules" routerLinkActive="active">Rules</a>
+        <a *ngIf="isConnected()" (click)="phoneMenuOpen=false" routerLink="/profile" routerLinkActive="active">Profile</a>
+    </div>
+    <div class="right nav-icon" >
+        <img *ngIf="!phoneMenuOpen" (click)="phoneMenuOpen=true"  src="assets/icons/navbar.svg" alt="open menu">
+        <img *ngIf="phoneMenuOpen" (click)="phoneMenuOpen=false"  src="assets/icons/close.svg" alt="close menu">
+    </div>
+</nav>
