@@ -21,7 +21,10 @@ export class HistoryComponent implements OnInit {
     this.users = this.GlobalHistory.map(x => x.username).filter((value, index, self) => self.indexOf(value) === index);
     //create a dictionary with username as key and all his status as value
     this.users.forEach(user => {
-      this.history[user] = this.GlobalHistory.filter(x => x.username == user);
+      let status= this.GlobalHistory.filter(x => x.username == user);
+      //sort status by date
+      status.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      this.history[user] = status;
     });
 
     //sort user by number of status

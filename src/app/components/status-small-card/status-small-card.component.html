@@ -4,7 +4,7 @@
             <p id="type">{{status.type}}</p>
             <p id="date">{{status.date.toLocaleDateString("fr")}}</p>
         </div>
-        <img src="assets/icons/{{status.completed?'beerempty.png':'beerfull.png'}}" alt="">
+        <img src="assets/icons/{{status.completed?'beerfull.png':'beerempty.png'}}" alt="">
     </div>
     <p id="name" *ngIf="showName">"{{status.name}}"</p>
 </div>
