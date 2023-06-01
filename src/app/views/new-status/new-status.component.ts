@@ -32,7 +32,7 @@ export class NewStatusComponent implements OnInit{
     let response = await this.hdlt.CreateStatus(this.statusForm.value)
 
     if(response.type == ResponseType.Success){
-      this.router.navigate(['/home']);
+      this.router.navigate(['/ongoing']);
     }
 
   }
