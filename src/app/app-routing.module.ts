@@ -11,7 +11,7 @@ import { NewStatusComponent } from './views/new-status/new-status.component';
 import { IsVerfiedAuthGuard } from './services/isverified.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/ongoing', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: "home", component: HomeComponent },
   { path:"login", component: LoginComponent},
   { path: "signup", component: SignupComponent },
