@@ -1,6 +1,8 @@
 <section class="flex-col">
+    <app-user-card *ngIf="verified" [username]="username" [status]="status" class="card"></app-user-card>
+
     <div class="flex-col group">
-        <h2>{{username}} <span *ngIf="!verified">- not verified</span></h2>
+        <h2>Infos <span *ngIf="!verified">- not verified</span></h2>
         <div class="flex-col">
             <p>{{email}}</p>
             <p *ngIf="!verified">you need to be manually verified to use the website... just ask</p>

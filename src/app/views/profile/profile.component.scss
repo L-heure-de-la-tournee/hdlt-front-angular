@@ -4,6 +4,7 @@ section{
     justify-content: space-between;
     min-height: 70vh;
     gap: .5rem;
+    padding: 2rem 0;
 }
 
 input{
@@ -11,11 +12,16 @@ input{
 }
 
 .group{
-    width: 100%;
+    width: 90%;
     div{
         width: 100%;
         padding: 1rem;
         max-width: 500px;
         border:solid 3px $text1;
     }
+}
+
+app-user-card{
+    width: 90%;
+    max-width: calc(500px + 2rem + 3px);
 }

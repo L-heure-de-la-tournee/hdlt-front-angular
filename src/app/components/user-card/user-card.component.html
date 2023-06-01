@@ -1,1 +1,6 @@
-<p>user-card works!</p>
+<div class="user-card flex-col">
+    <h2>{{username}}</h2>
+    <div class="status-container flex-col">
+        <app-status-small-card *ngFor="let s of status" [status]="s"></app-status-small-card>
+    </div>
+</div>

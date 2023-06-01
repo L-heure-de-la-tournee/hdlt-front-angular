@@ -91,7 +91,40 @@ export class HDLTServices {
             response.documents.forEach((document:any) => {
                 let status = {id: document.$id, type: document.statusType.name, name: document.name, date: new Date(document.date), completed: document.completed,username: document.username}
                 statuses.push(status);
-                console.log("status", status);
+            }
+            );
+            console.log(response);
+        }
+        catch(error){
+            console.log(error);
+        }
+        return statuses;
+    }
+
+    async GetAllStatus(): Promise<Status[]>{
+        let statuses:Status[] = [];
+        try{
+            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS);
+            response.documents.forEach((document:any) => {
+                let status = {id: document.$id, type: document.statusType.name, name: document.name, date: new Date(document.date), completed: document.completed,username: document.username}
+                statuses.push(status);
+            }
+            );
+            console.log(response);
+        }
+        catch(error){
+            console.log(error);
+        }
+        return statuses;
+    }
+
+    async GetUserStatus(username:string){
+        let statuses:Status[] = [];
+        try{
+            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('username', username)]);
+            response.documents.forEach((document:any) => {
+                let status = {id: document.$id, type: document.statusType.name, name: document.name, date: new Date(document.date), completed: document.completed,username: document.username}
+                statuses.push(status);
             }
             );
             console.log(response);

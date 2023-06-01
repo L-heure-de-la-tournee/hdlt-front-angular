@@ -1,0 +1,10 @@
+<div class="flex-col">
+    <div class="flex-row basic-infos selectDisable" (click)="ToggleName()">
+        <div class="flex-row left">
+            <p id="type">{{status.type}}</p>
+            <p id="date">{{status.date.toLocaleDateString("fr")}}</p>
+        </div>
+        <img src="assets/icons/{{status.completed?'beerempty.png':'beerfull.png'}}" alt="">
+    </div>
+    <p id="name" *ngIf="showName">"{{status.name}}"</p>
+</div>

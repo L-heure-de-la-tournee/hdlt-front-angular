@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Status } from 'src/app/models/hdlt';
+import { HDLTServices } from 'src/app/services/hdlt.services';
 
 @Component({
   selector: 'app-user-card',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent {
+
+  @Input() username!:string;
+  @Input() status!:Status[];
+
+  constructor(private hdlt:HDLTServices) { }
 
 }

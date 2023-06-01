@@ -1,1 +1,3 @@
-<p>history works!</p>
+<section class="flex-row">
+    <app-user-card *ngFor="let user of users" [username]="user" [status]="history[user]" class="card"></app-user-card>
+</section>

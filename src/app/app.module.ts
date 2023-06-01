@@ -15,6 +15,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HistoryComponent } from './views/history/history.component';
 import { RulesComponent } from './views/rules/rules.component';
+import { StatusSmallCardComponent } from './components/status-small-card/status-small-card.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RulesComponent } from './views/rules/rules.component';
     ProfileComponent,
     NavComponent,
     HistoryComponent,
-    RulesComponent
+    RulesComponent,
+    StatusSmallCardComponent
   ],
   imports: [
     BrowserModule,
