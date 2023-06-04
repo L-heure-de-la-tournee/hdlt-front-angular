@@ -25,15 +25,14 @@ export class ProfileComponent implements OnInit {
     this.username = this.auth.GetUserName()
     this.email = this.auth.GetUserEmail();
     this.verified = this.auth.IsVerified();
+    let allstatus = await this.hdlt.GetAllStatus();
+    this.ach.SetupComparisonData(allstatus);
 
     if(this.verified)
     {
       this.status = await this.hdlt.GetUserStatus(this.username);
       //sort status by date
       this.status.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-      let allstatus = await this.hdlt.GetAllStatus();
-      this.ach.SetupComparisonData(allstatus);
     }
   }
 

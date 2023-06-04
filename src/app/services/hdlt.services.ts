@@ -33,12 +33,17 @@ export class HDLTServices {
     async GetStatusTypes(): Promise<StatusType[]>{
         let types:StatusType[] = [];
         try{
-            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS_TYPE);
-            response.documents.forEach((document:any) => {
-                let type = {id: document.$id, name: document.name}
-                types.push(type);
+            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS_TYPE, [Query.limit(100)]);
+            let offset = response.documents.length;
+            while(response.documents.length > 0){
+                response.documents.forEach((document:any) => {
+                    let type = {id: document.$id, name: document.name}
+                    types.push(type);
+                }
+                );
+                response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS_TYPE, [Query.limit(100), Query.offset(offset)]);
+                offset += response.documents.length;
             }
-            );
         }
         catch(error){
             console.log(error);
@@ -87,12 +92,17 @@ export class HDLTServices {
     async GetOnGoingStatus(): Promise<Status[]>{
         let statuses:Status[] = [];
         try{
-            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('completed', false)]);
-            response.documents.forEach((document:any) => {
-                let status = {id: document.$id, type: document.statusType.name, name: document.name, date: new Date(document.date), completed: document.completed,username: document.username}
-                statuses.push(status);
+            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('completed', false),Query.limit(100)]);
+            let offset = response.documents.length;
+            while(response.documents.length > 0){
+                response.documents.forEach((document:any) => {
+                    let status = {id: document.$id, type: document.statusType.name, name: document.name, date: new Date(document.date), completed: document.completed,username: document.username}
+                    statuses.push(status);
+                }
+                );
+                response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('completed', false),Query.limit(100), Query.offset(offset)]);
+                offset += response.documents.length;
             }
-            );
         }
         catch(error){
             console.log(error);
@@ -103,12 +113,18 @@ export class HDLTServices {
     async GetAllStatus(): Promise<Status[]>{
         let statuses:Status[] = [];
         try{
-            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS);
-            response.documents.forEach((document:any) => {
-                let status = {id: document.$id, type: document.statusType.name, name: document.name, date: new Date(document.date), completed: document.completed,username: document.username}
-                statuses.push(status);
+            // The only way is to loop through the database with the query Query.limit(100) and stop when the query result length == 0.
+            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.limit(100)]);
+            let offset = response.documents.length;
+            while(response.documents.length > 0){
+                response.documents.forEach((document:any) => {
+                    let status = {id: document.$id, type: document.statusType.name, name: document.name, date: new Date(document.date), completed: document.completed,username: document.username}
+                    statuses.push(status);
+                }
+                );
+                response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.limit(100), Query.offset(offset)]);
+                offset += response.documents.length;
             }
-            );
         }
         catch(error){
             console.log(error);
@@ -119,12 +135,18 @@ export class HDLTServices {
     async GetUserStatus(username:string){
         let statuses:Status[] = [];
         try{
-            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('username', username)]);
-            response.documents.forEach((document:any) => {
-                let status = {id: document.$id, type: document.statusType.name, name: document.name, date: new Date(document.date), completed: document.completed,username: document.username}
-                statuses.push(status);
+            // The only way is to loop through the database with the query Query.limit(100) and stop when the query result length == 0.
+            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('username', username),Query.limit(100)]);
+            let offset = response.documents.length;
+            while(response.documents.length > 0){
+                response.documents.forEach((document:any) => {
+                    let status = {id: document.$id, type: document.statusType.name, name: document.name, date: new Date(document.date), completed: document.completed,username: document.username}
+                    statuses.push(status);
+                }
+                );
+                response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('username', username), Query.limit(100), Query.offset(offset)]);
+                offset += response.documents.length;
             }
-            );
         }
         catch(error){
             console.log(error);
