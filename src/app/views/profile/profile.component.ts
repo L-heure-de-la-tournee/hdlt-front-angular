@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Status } from 'src/app/models/hdlt';
 import { ResponseType } from 'src/app/models/responses';
+import { AchivementsServices } from 'src/app/services/achievements.services';
 import { AuthentificationService } from 'src/app/services/auth.services';
 import { HDLTServices } from 'src/app/services/hdlt.services';
 
@@ -17,7 +18,7 @@ export class ProfileComponent implements OnInit {
   verified=false;
   status!:Status[];
 
-  constructor(private auth:AuthentificationService,private router:Router,private hdlt:HDLTServices) {}
+  constructor(private auth:AuthentificationService,private router:Router,private hdlt:HDLTServices,private ach:AchivementsServices) {}
 
   async ngOnInit() {
     await this.auth.CheckConnection();
@@ -30,6 +31,9 @@ export class ProfileComponent implements OnInit {
       this.status = await this.hdlt.GetUserStatus(this.username);
       //sort status by date
       this.status.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+      let allstatus = await this.hdlt.GetAllStatus();
+      this.ach.SetupComparisonData(allstatus);
     }
   }
 

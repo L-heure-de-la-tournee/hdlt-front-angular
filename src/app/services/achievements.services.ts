@@ -17,6 +17,12 @@ export class AchivementsServices {
     isConnected!:boolean;
     databases!:Databases;
 
+    allStatus!:Status[];
+    allOnGoingStatus!:Status[];
+    uniqueUsers!:string[];
+    userStatusNumber!:{username:string,number:number}[];
+
+
     constructor(private toast : ToastService, private auth: AuthentificationService,private hdlt:HDLTServices) {
         this.isConnected=false;
         this.client = new Client();
@@ -25,8 +31,17 @@ export class AchivementsServices {
         .setProject(environment.PROJECT_ID) // Your project ID
         ;
         this.databases = new Databases(this.client);
-
     }
+
+    async SetupComparisonData(allStatus:Status[]): Promise<void>{
+        this.allStatus = allStatus;
+        this.allOnGoingStatus = allStatus.filter(x => x.completed == false);
+        let users = this.allStatus.map(status => status.username);
+        this.uniqueUsers = users.filter((v, i, a) => a.indexOf(v) === i);
+        this.userStatusNumber = this.uniqueUsers.map(user => {return {username: user, number: users.filter(u => u == user).length}});
+        this.userStatusNumber.sort((a,b) => b.number - a.number);
+    }
+
 
     async LoadStatus(username:string): Promise<Status[]>{
         let userStatus = await this.hdlt.GetUserStatus(username);
@@ -36,12 +51,7 @@ export class AchivementsServices {
     async TryFirst(achievements:Achievement[],username:string): Promise<void>{
         let achievement:Achievement = {name: "First", description: "Tu as le plus de status", image: "first.png",color:"transparent",date: new Date(),occurence: 1};
         //get first user in number of status
-        let allstatus= await this.hdlt.GetAllStatus();
-        let users = allstatus.map(status => status.username);
-        let uniqueUsers = users.filter((v, i, a) => a.indexOf(v) === i);
-        let userStatusNumber = uniqueUsers.map(user => {return {username: user, number: users.filter(u => u == user).length}});
-        userStatusNumber.sort((a,b) => b.number - a.number);
-        let first = userStatusNumber[0];
+        let first = this.userStatusNumber[0];
         if(first.username === username){
             achievements.push(achievement);
         }
@@ -50,8 +60,7 @@ export class AchivementsServices {
     async TryBestOngoing(achievements:Achievement[],username:string): Promise<void>{
         let achievement:Achievement = {name: "Tu vas payer !", description: "Tu as le plus de status en cours", image: "biere.png",color:"#644e37",date: new Date(),occurence: 1};
         //get first user in number of status ongoing
-        let allstatusongoing= await this.hdlt.GetOnGoingStatus();
-        let users = allstatusongoing.map(status => status.username);
+        let users = this.allOnGoingStatus.map(status => status.username);
         let uniqueUsers = users.filter((v, i, a) => a.indexOf(v) === i);
         let userStatusNumber = uniqueUsers.map(user => {return {username: user, number: users.filter(u => u == user).length}});
         userStatusNumber.sort((a,b) => b.number - a.number);
@@ -90,10 +99,8 @@ export class AchivementsServices {
 
     async TryFirstWithStatusType(achievements:Achievement[],username:string,statusType:StatusType,name:string,description:string,image:string): Promise<void>{
         let achievement:Achievement = {name: name, description: description, image: image,color:" #697360 ",date: new Date(),occurence: 1};
-        //get all status
-        let allstatus= await this.hdlt.GetAllStatus();
         //get all status of type statusType
-        let status = allstatus.filter(status => status.type === statusType.name);
+        let status = this.allStatus.filter(status => status.type === statusType.name);
         //sort by date
         status.sort((a,b) => a.date.getTime() - b.date.getTime());
         //get first status

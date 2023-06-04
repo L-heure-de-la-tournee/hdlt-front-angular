@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Status } from 'src/app/models/hdlt';
+import { AchivementsServices } from 'src/app/services/achievements.services';
 import { AuthentificationService } from 'src/app/services/auth.services';
 import { HDLTServices } from 'src/app/services/hdlt.services';
 
@@ -14,10 +15,11 @@ export class HistoryComponent implements OnInit {
   users:string[] = [];
   history:{[key:string]:Status[]} = {};
 
-  constructor(private hdlt:HDLTServices,private auth:AuthentificationService) { }
+  constructor(private hdlt:HDLTServices,private auth:AuthentificationService,private ach:AchivementsServices) { }
 
   async ngOnInit(): Promise<void> {
     this.GlobalHistory = await this.hdlt.GetAllStatus();
+    this.ach.SetupComparisonData(this.GlobalHistory);
     //find all users with no duplicates
     this.users = this.GlobalHistory.map(x => x.username).filter((value, index, self) => self.indexOf(value) === index);
     //create a dictionary with username as key and all his status as value
