@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HistoryComponent } from './views/history/history.component';
 import { RulesComponent } from './views/rules/rules.component';
 import { StatusSmallCardComponent } from './components/status-small-card/status-small-card.component';
+import { AchievementComponent } from './components/achievement/achievement.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { StatusSmallCardComponent } from './components/status-small-card/status-
     NavComponent,
     HistoryComponent,
     RulesComponent,
-    StatusSmallCardComponent
+    StatusSmallCardComponent,
+    AchievementComponent
   ],
   imports: [
     BrowserModule,

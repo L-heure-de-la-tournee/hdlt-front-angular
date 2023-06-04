@@ -93,7 +93,6 @@ export class HDLTServices {
                 statuses.push(status);
             }
             );
-            console.log(response);
         }
         catch(error){
             console.log(error);
@@ -110,7 +109,6 @@ export class HDLTServices {
                 statuses.push(status);
             }
             );
-            console.log(response);
         }
         catch(error){
             console.log(error);
@@ -127,7 +125,6 @@ export class HDLTServices {
                 statuses.push(status);
             }
             );
-            console.log(response);
         }
         catch(error){
             console.log(error);

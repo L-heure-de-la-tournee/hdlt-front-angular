@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Status } from 'src/app/models/hdlt';
+import { AuthentificationService } from 'src/app/services/auth.services';
 import { HDLTServices } from 'src/app/services/hdlt.services';
 
 @Component({
@@ -13,7 +14,7 @@ export class HistoryComponent implements OnInit {
   users:string[] = [];
   history:{[key:string]:Status[]} = {};
 
-  constructor(private hdlt:HDLTServices) { }
+  constructor(private hdlt:HDLTServices,private auth:AuthentificationService) { }
 
   async ngOnInit(): Promise<void> {
     this.GlobalHistory = await this.hdlt.GetAllStatus();
@@ -29,6 +30,8 @@ export class HistoryComponent implements OnInit {
 
     //sort user by number of status
     this.users.sort((a,b) => this.history[b].length - this.history[a].length);
+    //put current user at the top
+    this.users.unshift(this.users.splice(this.users.indexOf(this.auth.GetUserName()),1)[0]);
   }
 
 }

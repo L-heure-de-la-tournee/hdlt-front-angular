@@ -28,6 +28,8 @@ export class ProfileComponent implements OnInit {
     if(this.verified)
     {
       this.status = await this.hdlt.GetUserStatus(this.username);
+      //sort status by date
+      this.status.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     }
   }
 

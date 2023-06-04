@@ -1,5 +1,9 @@
 <div class="user-card flex-col">
     <h2>{{username}}</h2>
+    <div class="achievements flex-row">
+        <app-achievement *ngFor="let a of achievements" [achievement]="a" (mouseenter)="hightlightedAchievements=a"></app-achievement>
+    </div>
+    <p *ngIf="hightlightedAchievements!=null"> <strong>{{hightlightedAchievements.name}}</strong> <br> <em>"{{hightlightedAchievements.description}}"</em> </p>
     <div class="status-container flex-col">
         <app-status-small-card *ngFor="let s of status" [status]="s"></app-status-small-card>
     </div>

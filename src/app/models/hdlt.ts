@@ -5,9 +5,18 @@ export interface StatusType {
 
 export interface Status {
     id: string;
-    type: StatusType;
+    type: string;
     name: string;
     date: Date;
     completed: boolean;
     username: string;
+}
+
+export interface Achievement {
+    name: string;
+    description: string;
+    image: string;
+    color: string;
+    date: Date;
+    occurence: number;
 }
