@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Status } from 'src/app/models/hdlt';
 import { ResponseType } from 'src/app/models/responses';
+import { AuthentificationService } from 'src/app/services/auth.services';
 import { HDLTServices } from 'src/app/services/hdlt.services';
 
 @Component({
@@ -12,9 +13,10 @@ export class OngoingComponent implements OnInit{
 
   ongoing:Status[] = [];
 
-  constructor(private hdlt:HDLTServices) { }
+  constructor(private hdlt:HDLTServices,private auth:AuthentificationService) { }
 
   async ngOnInit(): Promise<void> {
+    await this.auth.CheckConnection();
     this.ongoing = await this.hdlt.GetOnGoingStatus();
     //sort by date
     this.ongoing.sort((a,b) => {
@@ -31,6 +33,11 @@ export class OngoingComponent implements OnInit{
       //remove from list
       this.ongoing = this.ongoing.filter(x => x.id != status.id); 
     }
+  }
+
+  IsUserStatus(status:Status){
+    let username = this.auth.GetUserName();
+    return status.username == username;
   }
 
 

@@ -5,6 +5,7 @@ section{
         justify-content: space-between;
         width: calc(100% - 1rem);
         max-width: 500px;
+        gap:.5rem;
         h2{
             font-weight: 500;
         }
@@ -19,6 +20,9 @@ section{
         #type{
             font-size: .9rem;
             font-weight: 600;
+        }
+        .content{
+            width: calc(100% - 80px);
         }
     }
 }
