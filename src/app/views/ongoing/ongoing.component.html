@@ -7,9 +7,7 @@
             <p id="type">{{status.type}}</p>
             <p id="name">"{{status.name}}"</p>
         </div>
-        <button class="white-btn" (click)="Payed(status)">Payée !</button>
-        <!-- *ngIf="IsUserStatus(status)" -->
-
+        <button *ngIf="IsUserStatus(status)" class="white-btn" (click)="Payed(status)">Payée !</button>
     </article>
 
 </section>
