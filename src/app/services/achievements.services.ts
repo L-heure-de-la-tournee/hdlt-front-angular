@@ -112,7 +112,75 @@ export class AchivementsServices {
         }
     }
 
+    async TryMostComplicated(achievements:Achievement[],username:string): Promise<void>{
+        let achievement:Achievement = {name: "Champion du c'est compliqué", description: "C'est pas compliqué pourtant couple ou pas couple...", image: "complicated.png",color:"#644e37",date: new Date(),occurence: 1};
+        //get user with the most "C'est compliqué" status type
+        let status = this.allStatus.filter(status => status.type === "C'est compliqué");
+        let users = status.map(status => status.username);
+        let uniqueUsers = users.filter((v, i, a) => a.indexOf(v) === i);
+        let userStatusNumber = uniqueUsers.map(user => {return {username: user, number: users.filter(u => u == user).length}});
+        userStatusNumber.sort((a,b) => b.number - a.number);
+        //get list of user that are first or tied for first
+        let first = userStatusNumber.filter(user => user.number === userStatusNumber[0].number);
+        //check if the user is in the list
+        if(first.find(user => user.username === username) !== undefined){
+            achievement.occurence = first[0].number;
+            achievements.push(achievement);
+        }
 
+    }
+
+    async TryMostPlaid(achievements:Achievement[],username:string): Promise<void>{
+        let achievement:Achievement = {name: "Champion du plaid", description: "Tu as le plus de status avec un plaid", image: "plaid.png",color:"#644e37",date: new Date(),occurence: 1};
+        //get user with the most time the word "plaid" or "pled" in status name
+        let status = this.allStatus.filter(status => status.name.toLowerCase().includes("plaid") || status.name.toLowerCase().includes("pled"));
+        let users = status.map(status => status.username);
+        let uniqueUsers = users.filter((v, i, a) => a.indexOf(v) === i);
+        let userStatusNumber = uniqueUsers.map(user => {return {username: user, number: users.filter(u => u == user).length}});
+        userStatusNumber.sort((a,b) => b.number - a.number);
+        //get list of user that are first or tied for first
+        let first = userStatusNumber.filter(user => user.number === userStatusNumber[0].number);
+        //check if the user is in the list
+        if(first.find(user => user.username === username) !== undefined){
+            achievement.occurence = first[0].number;
+            achievements.push(achievement);
+        }
+    }
+
+    async TryMostXStatus(achievements:Achievement[],username:string,type:StatusType,name:string,description:string,image:string): Promise<void>{
+        let achievement:Achievement = {name: name, description: description, image: image,color:"#ecea43",date: new Date(),occurence: 1};
+        //get user with the most status of type type
+        let status = this.allStatus.filter(status => status.type === type.name);
+        let users = status.map(status => status.username);
+        let uniqueUsers = users.filter((v, i, a) => a.indexOf(v) === i);
+        let userStatusNumber = uniqueUsers.map(user => {return {username: user, number: users.filter(u => u == user).length}});
+        userStatusNumber.sort((a,b) => b.number - a.number);
+        //get list of user that are first or tied for first
+        let first = userStatusNumber.filter(user => user.number === userStatusNumber[0].number);
+        //check if the user is in the list
+        if(first.find(user => user.username === username) !== undefined){
+            achievement.occurence = first[0].number;
+            achievements.push(achievement);
+        }
+    }
+
+    async TryTropStable(achievements:Achievement[],username:string): Promise<void>{
+        await this.TryMostXStatus(achievements,username,{id:"",name:"trop stable"},"Casseur d'ambiance","","stable.png");
+        //change the description 
+        let ach= achievements.find(achievement => achievement.name === "Casseur d'ambiance")
+        if(ach !== undefined){
+            ach.description = ach.occurence+" an"+(ach.occurence>1?'s':'')+" sans payer ? tu abuse !";;
+        }
+    }
+
+    async TryNewbie(achievements:Achievement[],username:string): Promise<void>{
+        let achievement:Achievement = {name: "Newbie", description: "Tu as pas beaucoup de status dis donc", image: "newbie.png",color:"#ecea43",date: new Date(),occurence: 1};
+        //get user with 1 status
+        let status = this.allStatus.filter(status => status.username === username);
+        if(status.length === 1){
+            achievements.push(achievement);
+        }
+    }
 
 
 
@@ -128,7 +196,20 @@ export class AchivementsServices {
         
         //premier amputé
         await this.TryFirstWithStatusType(achievements,username,{id:"",name:"Amputation diverse et variée"},"Amputé","Premier amputé","surgeon.png");
+
+        //premier avec nouveau métier/boulot
+        await this.TryFirstWithStatusType(achievements,username,{id:"",name:"nouveau métier/boulot"},"Nouveau métier","Premier avec un nouveau métier","job.png");
         
+        //champion du c'est compliqué
+        await this.TryMostComplicated(achievements,username);
+
+        //trop stable
+        await this.TryTropStable(achievements,username);
+
+        await this.TryMostPlaid(achievements,username);
+
+        await this.TryNewbie(achievements,username);
+
         await this.TryNInARow(status,achievements,2,"deux de suite !","Deux changement de status en deux jours","two.png");
         await this.TryNInARow(status,achievements,3,"Jamais deux sans trois","Trois changement de status en trois jours","three.png");
 
