@@ -19,8 +19,6 @@ export class HistoryComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.GlobalHistory = await this.hdlt.GetAllStatus();
-    console.log("history",this.GlobalHistory)
-    this.ach.SetupComparisonData(this.GlobalHistory);
     //find all users with no duplicates
     this.users = this.GlobalHistory.map(x => x.username).filter((value, index, self) => self.indexOf(value) === index);
     //create a dictionary with username as key and all his status as value

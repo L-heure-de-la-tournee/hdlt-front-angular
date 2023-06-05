@@ -169,7 +169,7 @@ export class AchivementsServices {
         //change the description 
         let ach= achievements.find(achievement => achievement.name === "Casseur d'ambiance")
         if(ach !== undefined){
-            ach.description = ach.occurence+" an"+(ach.occurence>1?'s':'')+" sans payer ? tu abuse !";;
+            ach.description = ach.occurence+" an"+(ach.occurence>1?'s':'')+" sans payer de tournée ? tu abuse !";;
         }
     }
 
@@ -189,27 +189,25 @@ export class AchivementsServices {
         let achievements:Achievement[] = [];
         await this.TryFirst(achievements,username);
         await this.TryBestOngoing(achievements,username);
+
+        //first
         //premier pet
         await this.TryFirstWithStatusType(achievements,username,{id:"",name:"animal de compagnie"},"Animal lover","Premier avec un animal de compagnie","pet.png");
         //permier demenagement
         await this.TryFirstWithStatusType(achievements,username,{id:"",name:"déménagement"},"Déménageur","Premier à déménagement","package.png");
-        
         //premier amputé
         await this.TryFirstWithStatusType(achievements,username,{id:"",name:"Amputation diverse et variée"},"Amputé","Premier amputé","surgeon.png");
-
         //premier avec nouveau métier/boulot
         await this.TryFirstWithStatusType(achievements,username,{id:"",name:"nouveau métier/boulot"},"Nouveau métier","Premier avec un nouveau métier","job.png");
         
-        //champion du c'est compliqué
+
+        //most
         await this.TryMostComplicated(achievements,username);
-
-        //trop stable
         await this.TryTropStable(achievements,username);
-
         await this.TryMostPlaid(achievements,username);
-
         await this.TryNewbie(achievements,username);
 
+        //streaks
         await this.TryNInARow(status,achievements,2,"deux de suite !","Deux changement de status en deux jours","two.png");
         await this.TryNInARow(status,achievements,3,"Jamais deux sans trois","Trois changement de status en trois jours","three.png");
 

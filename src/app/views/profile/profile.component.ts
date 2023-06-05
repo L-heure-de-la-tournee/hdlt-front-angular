@@ -25,9 +25,6 @@ export class ProfileComponent implements OnInit {
     this.username = this.auth.GetUserName()
     this.email = this.auth.GetUserEmail();
     this.verified = this.auth.IsVerified();
-    let allstatus = await this.hdlt.GetAllStatus();
-    this.ach.SetupComparisonData(allstatus);
-
     if(this.verified)
     {
       this.status = await this.hdlt.GetUserStatus(this.username);

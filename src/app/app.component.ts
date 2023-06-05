@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HDLTServices } from './services/hdlt.services';
+import { AchivementsServices } from './services/achievements.services';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +11,11 @@ import { Router } from '@angular/router';
 export class AppComponent  implements OnInit{
   title = 'hdlt';
 
-  constructor(private router:Router) {}
+  constructor(private router:Router,private hdlt:HDLTServices,private ach:AchivementsServices) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    let allstatus = await this.hdlt.GetAllStatus();
+    await this.ach.SetupComparisonData(allstatus);
     this.router.navigate(['/home'])
   }
 }
