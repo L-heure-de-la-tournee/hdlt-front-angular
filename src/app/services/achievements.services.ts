@@ -169,12 +169,12 @@ export class AchivementsServices {
         //change the description 
         let ach= achievements.find(achievement => achievement.name === "Casseur d'ambiance")
         if(ach !== undefined){
-            ach.description = ach.occurence+" an"+(ach.occurence>1?'s':'')+" sans payer de tournée ? tu abuse !";;
+            ach.description = ach.occurence+" an"+(ach.occurence>1?'s':'')+" sans payer de tournée ? pfff...";;
         }
     }
 
     async TryNewbie(achievements:Achievement[],username:string): Promise<void>{
-        let achievement:Achievement = {name: "Newbie", description: "Tu as pas beaucoup de status dis donc", image: "newbie.png",color:"#ecea43",date: new Date(),occurence: 1};
+        let achievement:Achievement = {name: "Newbie", description: "1 seul status ? c'est tout ? on a soif !", image: "newbie.png",color:"#ecea43",date: new Date(),occurence: 1};
         //get user with 1 status
         let status = this.allStatus.filter(status => status.username === username);
         if(status.length === 1){
@@ -208,7 +208,7 @@ export class AchivementsServices {
         await this.TryNewbie(achievements,username);
 
         //streaks
-        await this.TryNInARow(status,achievements,2,"deux de suite !","Deux changement de status en deux jours","two.png");
+        await this.TryNInARow(status,achievements,2,"Deux de suite !","Deux changement de status en deux jours","two.png");
         await this.TryNInARow(status,achievements,3,"Jamais deux sans trois","Trois changement de status en trois jours","three.png");
 
         achievements.push({name: "HDLT", description: "Membre de HDLT", image: "beer.png",color:"black",date: new Date(),occurence: 1})
