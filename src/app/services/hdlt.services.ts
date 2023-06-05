@@ -41,8 +41,13 @@ export class HDLTServices {
                     types.push(type);
                 }
                 );
-                response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS_TYPE, [Query.limit(100), Query.offset(offset)]);
-                offset += response.documents.length;
+                //only need to load for more if the response is full
+                if(response.documents.length == 100){
+                    response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS_TYPE, [Query.limit(100), Query.offset(offset)]);
+                    offset += response.documents.length;
+                }else{
+                    break;
+                }
             }
         }
         catch(error){
@@ -100,8 +105,13 @@ export class HDLTServices {
                     statuses.push(status);
                 }
                 );
-                response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('completed', false),Query.limit(100), Query.offset(offset)]);
-                offset += response.documents.length;
+                //only need to load for more if the response is full
+                if(response.documents.length == 100){
+                    response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('completed', false),Query.limit(100), Query.offset(offset)]);
+                    offset += response.documents.length;
+                }else{
+                    break;
+                }
             }
         }
         catch(error){
@@ -122,8 +132,13 @@ export class HDLTServices {
                     statuses.push(status);
                 }
                 );
-                response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.limit(100), Query.offset(offset)]);
-                offset += response.documents.length;
+                //only need to load for more if the response is full
+                if(response.documents.length == 100){
+                    response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.limit(100), Query.offset(offset)]);
+                    offset += response.documents.length;
+                }else{
+                    break;
+                }
             }
         }
         catch(error){
@@ -144,8 +159,13 @@ export class HDLTServices {
                     statuses.push(status);
                 }
                 );
-                response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('username', username), Query.limit(100), Query.offset(offset)]);
-                offset += response.documents.length;
+                //only need to load for more if the response is full
+                if(response.documents.length == 100){
+                    response = await this.databases.listDocuments(environment.DATABASE_ID, environment.STATUS,[Query.equal('username', username), Query.limit(100), Query.offset(offset)]);
+                    offset += response.documents.length;
+                }else{
+                    break;
+                }
             }
         }
         catch(error){
