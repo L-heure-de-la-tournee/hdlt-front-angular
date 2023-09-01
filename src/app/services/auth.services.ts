@@ -139,6 +139,23 @@ export class AuthentificationService {
         return {value:val,type:type};
     }
 
+    async UpdatePassword(oldPassword:string,newPassword:string): Promise<Response>{
+        let val:string;
+        let type:ResponseType;
+
+        try {
+            await this.account.updatePassword(newPassword,oldPassword);
+            val = "Password updated";
+            type = ResponseType.Success;
+        } catch (error) {
+            val = getErrorMessage(error);
+            type = ResponseType.Error;
+        }
+
+        this.toast.Show(val,type);
+        return {value:val,type:type};
+    }
+
     DeleteAccount(){
         //TODO
     }

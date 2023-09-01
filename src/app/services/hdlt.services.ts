@@ -174,6 +174,28 @@ export class HDLTServices {
         return statuses;
     }
 
+    async UpdateStatusWithNewUsername(oldUsername:string, newUsername:string): Promise<Response>{
+        let res:Response;
+
+        try{
+            let statusToUpload = {	
+                username: newUsername
+            };
+            //get all the status of the old username
+            let statuses = await this.GetUserStatus(oldUsername);
+            //update all the status with the new username
+            statuses.forEach(async (status:Status) => {
+                await this.databases.updateDocument(environment.DATABASE_ID, environment.STATUS, status.id, statusToUpload);
+            });
+            res = {type: ResponseType.Success, value: "Status updated"};
+        }
+        catch(error){
+            res = {type: ResponseType.Error, value: getErrorMessage(error)};
+        }
+        this.toast.Show(res.value, res.type);
+        return res;
+    }
+
 
 
    

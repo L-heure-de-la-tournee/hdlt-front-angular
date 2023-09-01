@@ -6,9 +6,22 @@
         <div class="flex-col">
             <p>{{email}}</p>
             <p *ngIf="!verified">you need to be manually verified to use the website... just ask</p>
-            <p>just contact the dev to update the account for now</p>
         </div>
     </div>
+
+    <div class="flex-col group">
+        <h2>Change Informations</h2>
+        <div class="flex-col">
+            <h3>Username</h3>
+            <input type="text" [(ngModel)]="username" placeholder="Username">
+            <button (click)="changeUsername()" class="black-btn">Change Username</button>
+            <h3>Password</h3>
+            <input type="password" [(ngModel)]="oldPassword" placeholder="Password" >
+            <input type="password" [(ngModel)]="newPassword" placeholder="New Password">
+            <button (click)="changePassword()" class="black-btn">Change Password</button>
+        </div>
+    </div>
+
 
     <div class="flex-col group">
         <h2>Danger Zone</h2>
