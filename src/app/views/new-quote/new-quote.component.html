@@ -1,0 +1,10 @@
+<div class="fullscreen-center" style="gap:2rem">
+    <form [formGroup]="quoteForm">
+        <h1>New Quote</h1>
+        <input type="text" formControlName="quote" class="form-control" id="quote" placeholder="Quote">
+        <input type="text" formControlName="username" class="form-control" id="username" placeholder="Qui ?">
+        <input type="date" formControlName="date" class="form-control" id="date" placeholder="date">
+        <button type="submit" (click)="onSubmitForm()" class="white-btn" [disabled]="quoteForm.invalid">Submit</button>
+    </form>
+    <img class="illustration" src="assets/illustrations/quote.svg" alt="login illustration">
+</div>

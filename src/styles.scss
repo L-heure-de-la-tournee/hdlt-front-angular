@@ -42,6 +42,7 @@ body {
     border: 2px solid $text1;
     color: $text1;
     transition: all 0.7s ease;
+    text-decoration: none;
     &:hover{
         background-color: $text1;
         color: $background;
@@ -150,4 +151,8 @@ input[type="submit"], button[type="submit"]{
     @include width-under(600px){
         display: none;
     }
+}
+
+.w-100{
+  width: 100%;
 }

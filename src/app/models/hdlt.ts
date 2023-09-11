@@ -20,3 +20,9 @@ export interface Achievement {
     date: Date;
     occurence: number;
 }
+
+export interface Quote {
+    quote: string;
+    username: string;
+    date: Date;
+}

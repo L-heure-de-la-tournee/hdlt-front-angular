@@ -5,7 +5,7 @@ import { getErrorMessage } from '../Utils/utils';
 import { ResponseType, Response } from '../models/responses';
 import { ToastService } from './toast.services';
 import { AuthentificationService } from './auth.services';
-import { Status, StatusType } from '../models/hdlt';
+import { Quote, Status, StatusType } from '../models/hdlt';
 
 @Injectable({
   providedIn: 'root'
@@ -197,6 +197,48 @@ export class HDLTServices {
     }
 
 
+    async createQuote(quote:Quote): Promise<Response>{
+        let res:Response;
 
+        try{
+            const id = ID.unique();
+            await this.databases.createDocument(environment.DATABASE_ID, environment.QUOTE, ID.unique(), quote);
+            res = {type: ResponseType.Success, value: "Quote added"};
+        }
+        catch(error){
+            res = {type: ResponseType.Error, value: getErrorMessage(error)};
+        }
+
+        this.toast.Show(res.value, res.type);
+        return res;      
+    }      
+
+    async getQuotes(): Promise<Quote[]>{
+        let quotes : Quote[] = [];
+
+        try{
+            let response = await this.databases.listDocuments(environment.DATABASE_ID, environment.QUOTE,[Query.limit(100)]);
+            let offset = response.documents.length;
+            while(response.documents.length > 0){
+                response.documents.forEach((document:any) => {
+                    let quote = {quote: document.quote, username: document.username, date: new Date(document.date)}
+                    quotes.push(quote);
+                }
+                );
+                //only need to load for more if the response is full
+                if(response.documents.length == 100){
+                    response = await this.databases.listDocuments(environment.DATABASE_ID, environment.QUOTE,[Query.limit(100), Query.offset(offset)]);
+                    offset += response.documents.length;
+                }else{
+                    break;
+                }
+            }
+        }
+        catch(error){
+            console.log(error);
+        }
+
+        return quotes;
+    }
    
 }

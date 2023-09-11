@@ -2,10 +2,11 @@
 @import "src/app/styles/mixins.scss";
 .user-card{
     position: initial;
-    border:2px solid $text1-20;
     padding: .5rem;
     border-radius: 5px;
     transition: all .2s ease-in-out;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    background-color: $background;
 }
 
 h2{

@@ -1,8 +1,11 @@
+@import "src/app/styles/variables.scss";
+
+
 section{
     justify-content: flex-start;
     padding: 0rem 1rem;
     padding-bottom: 2rem;
-
+    
     h1{
         font-size: 3rem;
         font-weight: 500;
@@ -12,6 +15,11 @@ section{
     article{
         width: 100%;
         max-width: 900px;
+        
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+        background-color: $background;
+        padding: .5rem;
+        border-radius: 5px;
         h4{
             font-weight: 600;
         }

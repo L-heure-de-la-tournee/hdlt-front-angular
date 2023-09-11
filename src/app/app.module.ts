@@ -17,6 +17,10 @@ import { HistoryComponent } from './views/history/history.component';
 import { RulesComponent } from './views/rules/rules.component';
 import { StatusSmallCardComponent } from './components/status-small-card/status-small-card.component';
 import { AchievementComponent } from './components/achievement/achievement.component';
+import { QuotesComponent } from './views/quotes/quotes.component';
+import { NewQuoteComponent } from './views/new-quote/new-quote.component';
+import { NewComponent } from './views/new/new.component';
+import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { AchievementComponent } from './components/achievement/achievement.compo
     HistoryComponent,
     RulesComponent,
     StatusSmallCardComponent,
-    AchievementComponent
+    AchievementComponent,
+    QuotesComponent,
+    NewQuoteComponent,
+    NewComponent,
+    QuoteCardComponent
   ],
   imports: [
     BrowserModule,
