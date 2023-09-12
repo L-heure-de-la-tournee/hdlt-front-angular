@@ -233,6 +233,8 @@ export class HDLTServices {
                     break;
                 }
             }
+            //sort by date
+            quotes.sort((a,b) => (a.date > b.date) ? -1 : ((b.date > a.date) ? 1 : 0));
         }
         catch(error){
             console.log(error);
@@ -240,5 +242,34 @@ export class HDLTServices {
 
         return quotes;
     }
+
+    searchIntoObjectFields(objects:Object[], search:string): Object[]{
+        let results:Object[] = [];
+        try{
+            //check if the search is not empty and if it's in any of the object fields
+            if(search != ""){
+                objects.forEach((object:any) => {
+                    let found = false;
+                    for (const [key, value] of Object.entries(object)) {
+                        //if the value is a string and contains the search
+                        if(typeof value === 'string'){
+                            if(value.toString().toLowerCase().includes(search.toLowerCase())){
+                                found = true;
+                                break;
+                            }
+                        }
+                    }
+                    if(found){
+                        results.push(object);
+                    }
+                });
+            }
+        }
+        catch(error){
+            console.log(error);
+        }
+        return results;
+    }
+        
    
 }

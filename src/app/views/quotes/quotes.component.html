@@ -1,3 +1,4 @@
 <section class="fullscreen-center flex-col">
-    <app-quote-card *ngFor="let quote of quotes" [quote]="quote"></app-quote-card>
+    <input [ngModel]="search" (ngModelChange)="searchIntoQuotes($event)" type="text" placeholder="search into hell">
+    <app-quote-card *ngFor="let quote of displayedQuotes" [quote]="quote"></app-quote-card>
 </section>

@@ -10,11 +10,19 @@ import { HDLTServices } from 'src/app/services/hdlt.services';
 export class QuotesComponent implements OnInit {
 
   quotes:Quote[] = [];
+  displayedQuotes:Quote[] = [];
+
+  search:string = '';
 
   constructor(private readonly hdlt:HDLTServices) { }
 
   async ngOnInit(): Promise<void> {
     this.quotes = await this.hdlt.getQuotes();
+    this.displayedQuotes = [...this.quotes];
   }
 
+  searchIntoQuotes(search:any):void {
+    if(search === '') this.displayedQuotes = [...this.quotes];
+    else this.displayedQuotes = (this.hdlt.searchIntoObjectFields(this.quotes, search) as Quote[]);
+  }
 }
