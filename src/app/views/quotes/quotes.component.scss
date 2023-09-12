@@ -1,5 +1,10 @@
+@import "src/app/styles/variables.scss";
+
+
 .fullscreen-center{
     gap:1rem;
+    margin-top:calc($nav-height);
+    padding-bottom:2rem;
 }
 
 app-quote-card{

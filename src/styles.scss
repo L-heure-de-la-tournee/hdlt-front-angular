@@ -70,7 +70,7 @@ body {
 
 .fullscreen-center{
   width: 100%;
-  height: calc(100vh - $nav-height);
+  min-height: calc(100vh - $nav-height);
   display: flex;
   justify-content: center;
   align-items: center;
