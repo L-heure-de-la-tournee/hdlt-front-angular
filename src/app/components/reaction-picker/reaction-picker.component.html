@@ -1,0 +1,17 @@
+<div class="container flex-row center middle">
+  <img
+    class="new-reaction"
+    src="assets/icons/add-reaction-outline.svg"
+    alt=""
+    (click)="showReactionOptions = !showReactionOptions"
+  />
+  <div
+    class="options flex-row middle"
+    *ngIf="showReactionOptions"
+    (mouseleave)="showReactionOptions = false"
+  >
+    <p *ngFor="let reaction of options" (click)="onSelectReaction(reaction)">
+      {{ reaction }}
+    </p>
+  </div>
+</div>

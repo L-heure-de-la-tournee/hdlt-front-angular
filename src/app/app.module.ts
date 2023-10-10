@@ -21,6 +21,7 @@ import { QuotesComponent } from './views/quotes/quotes.component';
 import { NewQuoteComponent } from './views/new-quote/new-quote.component';
 import { NewComponent } from './views/new/new.component';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
+import { ReactionPickerComponent } from './components/reaction-picker/reaction-picker.component';
 
 @NgModule({
   declarations: [
@@ -41,15 +42,11 @@ import { QuoteCardComponent } from './components/quote-card/quote-card.component
     QuotesComponent,
     NewQuoteComponent,
     NewComponent,
-    QuoteCardComponent
+    QuoteCardComponent,
+    ReactionPickerComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,4 +1,22 @@
 <div class="quote-card flex-col">
-    <p class="quote w-100"> <span class="user">{{quote.username}} </span> <span>“ </span><i>{{quote.quote}}</i><span> ”</span></p>
-    <p>{{quote.date | date}}</p>
+  <p class="quote w-100">
+    <span class="user">{{ quote.username }} </span> <span>“ </span
+    ><i>{{ quote.quote }}</i
+    ><span> ”</span>
+  </p>
+  <div class="flex-row middle">
+    <p>{{ quote.date | date }}</p>
+    <app-reaction-picker
+      (reactionSelected)="onReactionSelected($event)"
+    ></app-reaction-picker>
+  </div>
+  <div class="flex-row middle reactions">
+    <p
+      *ngFor="let reaction of quote.reactions"
+      (click)="onRemoveReaction(reaction)"
+      [ngClass]="{ mine: reaction.isMine }"
+    >
+      {{ reaction.emoji }}
+    </p>
+  </div>
 </div>

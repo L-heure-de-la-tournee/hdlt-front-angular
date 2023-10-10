@@ -1,76 +1,105 @@
-<section class="flex-col">
-    <h1>Rules</h1>
-    <article>
-        <h4>Article 1.</h4>
-        <p>Je resterais toujours fidèle à la tournée.</p>
-    </article>
-    <article>
-        <h4>Article 2.</h4>
-        <p>Je ne briserais jamais l'article 1.</p>
-    </article>
-    <article>
-        <h4>Article 3.</h4>
-        <p>Le « je » signifie : Tout homme ou femme de plus de 18 ans et participant à l'heure de la
-tournée, doit toujours respecter les articles qui suivent. Et ce jusqu'à son décès.</p>
-    </article>
-    <article>
-        <h4>Article 4.</h4>
-        <p>Je ne mentirai jamais à propos d'un changement de statut.</p>
-    </article>
-    <article>
-        <h4>Article 5.</h4>
-        <p>Tout changement de statut doit être déclaré dans les 24h qui suivent, sauf situations
-        exceptionnelles.
-        Est défini comme situations exceptionnelles, l'incapacité à déclarer sa nouvelle situation
-        pour cause de :</p>
-        <ul>
-            <li>vacances sans accès à son téléphone.</li>
-            <li>Pas de connexion. </li>
-            <li>Incapacité physique à communiquer ce nouveau statut.</li>
-        </ul>
-    </article>
-    <article>
-        <h4>Article 6.</h4>
-        <p>Est défini comme statut, une situation qui nous caractérise (voir article 7).</p>
-    </article>
-    <article>
-        <h4>Article 7.</h4>
-        <p>La liste qui suit défini les statuts possibles :</p>
-        <ul *ngIf="status.length > 0">
-            <li *ngFor="let type of status">{{type.name}}</li>
-        </ul>
-    </article>
-    <article>
-        <h4>Article 8.</h4>
-        <p>Si une personne n'a pas payé dans le cadre de l’heure de la tournée depuis 1 an, il doit payer une tournée.</p>
-    </article>
-    <article>
-        <h4>Article 9.</h4>
-        <p>Une relation est définie comme compliquée lorsque :</p>
-        <ul>
-            <li>La relation dure depuis 2 semaines ou plus.</li>
-            <li>Il y a eu un ou plusieurs dates (non sexuels).</li>
-            <li>S'il y a eu date avec plaid, peu importe la durée de la relation.</li>
-        </ul>
-    </article>
-    <article>
-        <h4>Article 10.</h4>
-        <p>En cas de changement de statut, il faut payer une tournée. Pour un changement de statut dit « négatif », la personne concernée doit payer une petite tournée. Dans le cas d'un changement de statut positif, la personne concernée doit payer une grosse tournée.</p>
-    </article>
-    <article>
-        <h4>Article 11.</h4>
-        <p>La tournée est validée lorsque 5 personnes au moins y compris la personne qui paye sont présentes.</p>
-    </article>
-    <article>
-        <h4>Article 12.</h4>
-        <p>La tournée doit être payé le plus rapidement possible, dans les limites du budget de la personne qui paye et de la situation nationale (cf confinement).</p>
-    </article>
-    <article>
-        <h4>Article 13.</h4>
-        <p>Les statuts cités dans l'article 7, sont exhaustifs mais sont ouvert à des changements. Pour ajouter un statut, il doit être voté par 80% des membres de la tournée.</p>
-    </article>
-    <article>
-        <h4>Article 14.</h4>
-        <p>L'heure de la tournée est avant tout pour se marrer et pour boire ! Aucune discrimination ni prise de tête n'est tolérée.</p>
-    </article>
+<section class="flex-col center">
+  <h1>Rules</h1>
+  <article>
+    <h4>Article 1.</h4>
+    <p>Je resterais toujours fidèle à la tournée.</p>
+  </article>
+  <article>
+    <h4>Article 2.</h4>
+    <p>Je ne briserais jamais l'article 1.</p>
+  </article>
+  <article>
+    <h4>Article 3.</h4>
+    <p>
+      Le « je » signifie : Tout homme ou femme de plus de 18 ans et participant
+      à l'heure de la tournée, doit toujours respecter les articles qui suivent.
+      Et ce jusqu'à son décès.
+    </p>
+  </article>
+  <article>
+    <h4>Article 4.</h4>
+    <p>Je ne mentirai jamais à propos d'un changement de statut.</p>
+  </article>
+  <article>
+    <h4>Article 5.</h4>
+    <p>
+      Tout changement de statut doit être déclaré dans les 24h qui suivent, sauf
+      situations exceptionnelles. Est défini comme situations exceptionnelles,
+      l'incapacité à déclarer sa nouvelle situation pour cause de :
+    </p>
+    <ul>
+      <li>vacances sans accès à son téléphone.</li>
+      <li>Pas de connexion.</li>
+      <li>Incapacité physique à communiquer ce nouveau statut.</li>
+    </ul>
+  </article>
+  <article>
+    <h4>Article 6.</h4>
+    <p>
+      Est défini comme statut, une situation qui nous caractérise (voir article
+      7).
+    </p>
+  </article>
+  <article>
+    <h4>Article 7.</h4>
+    <p>La liste qui suit défini les statuts possibles :</p>
+    <ul *ngIf="status.length > 0">
+      <li *ngFor="let type of status">{{ type.name }}</li>
+    </ul>
+  </article>
+  <article>
+    <h4>Article 8.</h4>
+    <p>
+      Si une personne n'a pas payé dans le cadre de l’heure de la tournée depuis
+      1 an, il doit payer une tournée.
+    </p>
+  </article>
+  <article>
+    <h4>Article 9.</h4>
+    <p>Une relation est définie comme compliquée lorsque :</p>
+    <ul>
+      <li>La relation dure depuis 2 semaines ou plus.</li>
+      <li>Il y a eu un ou plusieurs dates (non sexuels).</li>
+      <li>S'il y a eu date avec plaid, peu importe la durée de la relation.</li>
+    </ul>
+  </article>
+  <article>
+    <h4>Article 10.</h4>
+    <p>
+      En cas de changement de statut, il faut payer une tournée. Pour un
+      changement de statut dit « négatif », la personne concernée doit payer une
+      petite tournée. Dans le cas d'un changement de statut positif, la personne
+      concernée doit payer une grosse tournée.
+    </p>
+  </article>
+  <article>
+    <h4>Article 11.</h4>
+    <p>
+      La tournée est validée lorsque 5 personnes au moins y compris la personne
+      qui paye sont présentes.
+    </p>
+  </article>
+  <article>
+    <h4>Article 12.</h4>
+    <p>
+      La tournée doit être payé le plus rapidement possible, dans les limites du
+      budget de la personne qui paye et de la situation nationale (cf
+      confinement).
+    </p>
+  </article>
+  <article>
+    <h4>Article 13.</h4>
+    <p>
+      Les statuts cités dans l'article 7, sont exhaustifs mais sont ouvert à des
+      changements. Pour ajouter un statut, il doit être voté par 80% des membres
+      de la tournée.
+    </p>
+  </article>
+  <article>
+    <h4>Article 14.</h4>
+    <p>
+      L'heure de la tournée est avant tout pour se marrer et pour boire ! Aucune
+      discrimination ni prise de tête n'est tolérée.
+    </p>
+  </article>
 </section>

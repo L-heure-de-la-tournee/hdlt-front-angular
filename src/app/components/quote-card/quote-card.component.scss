@@ -1,22 +1,33 @@
 @import "src/app/styles/variables.scss";
 
-
-.quote-card{
-    padding: .5rem;
+.quote-card {
+  position: relative;
+  padding: 0.5rem;
+  border-radius: 5px;
+  align-items: flex-end;
+  background-color: $background;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  width: 100%;
+  p {
+    font-size: 1.3rem;
+  }
+  .user {
+    font-size: 1.5rem;
+  }
+  span {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+}
+.reactions {
+  position: absolute;
+  left: 0.2rem;
+  bottom: 0.2rem;
+  font-size: 1.3rem;
+  .mine {
+    background-color: #dfeffffe;
     border-radius: 5px;
-    align-items: flex-end;
-    background-color: $background;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
-    width: 100%;
-    p{
-        font-size: 1.3rem;
-    }
-    .user{
-        font-size: 1.5rem;
-    }
-    span{
-        font-size: 2rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
+    cursor: pointer;
+  }
 }

@@ -1,13 +1,21 @@
-<section class="flex-col">
-    <h2 *ngIf="ongoing.length==0">Rien en cours... On a soif !</h2>
-    <h2 *ngIf="ongoing.length!=0"> {{ongoing.length}} tournée en attente</h2>
-    <article *ngFor="let status of ongoing" class="flex-row">
-        <div class="content">
-            <h2>{{status.username}} <span id="date">- {{status.date.toLocaleDateString("fr")}}</span> </h2>
-            <p id="type">{{status.type}}</p>
-            <p id="name">"{{status.name}}"</p>
-        </div>
-        <button *ngIf="IsUserStatus(status)" class="white-btn" (click)="Payed(status)">Payée !</button>
-    </article>
-
+<section class="flex-col center">
+  <h2 *ngIf="ongoing.length == 0">Rien en cours... On a soif !</h2>
+  <h2 *ngIf="ongoing.length != 0">{{ ongoing.length }} tournée en attente</h2>
+  <article *ngFor="let status of ongoing" class="flex-row middle">
+    <div class="content">
+      <h2>
+        {{ status.username }}
+        <span id="date">- {{ status.date.toLocaleDateString("fr") }}</span>
+      </h2>
+      <p id="type">{{ status.type }}</p>
+      <p id="name">"{{ status.name }}"</p>
+    </div>
+    <button
+      *ngIf="IsUserStatus(status)"
+      class="white-btn"
+      (click)="Payed(status)"
+    >
+      Payée !
+    </button>
+  </article>
 </section>

@@ -1,0 +1,28 @@
+@import "src/app/styles/variables.scss";
+
+.new-reaction {
+  cursor: pointer;
+  aspect-ratio: 1;
+  width: 1.5rem;
+}
+.container {
+  position: relative;
+}
+.options {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(calc(-100% + 1.75rem), -0.5rem);
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: $background;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+  p {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    &:hover {
+      transform: scale(2);
+    }
+  }
+}

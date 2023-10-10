@@ -1,21 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "app/styles/variables.scss";
 @import "app/styles/mixins.scss";
+@import "app/styles/layout.scss";
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: $background;
-    scroll-behavior: smooth;
+  font-family: "Montserrat", sans-serif;
+  background-color: $background;
+  scroll-behavior: smooth;
 }
 
-*{
+* {
   color: $text1;
   margin: 0;
   padding: 0;
 }
 
-.black-btn{
+.black-btn {
   color: $background;
   background-color: $text1;
   border: none;
@@ -23,43 +24,40 @@ body {
   padding: 10px 20px;
   cursor: pointer;
   //disabled
-  border:2px solid $text1;
-  &.disabled{
+  border: 2px solid $text1;
+  &.disabled {
     opacity: 0.5;
-    cursor:default;
+    cursor: default;
   }
-  &:hover{
+  &:hover {
     background-color: $background;
     color: $text1;
     border: 2px solid $text1;
   }
 }
 
-.white-btn{
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: $background;
-    border: 2px solid $text1;
-    color: $text1;
-    transition: all 0.7s ease;
-    text-decoration: none;
-    &:hover{
-        background-color: $text1;
-        color: $background;
-    }
-
+.white-btn {
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: $background;
+  border: 2px solid $text1;
+  color: $text1;
+  transition: all 0.7s ease;
+  text-decoration: none;
+  &:hover {
+    background-color: $text1;
+    color: $background;
+  }
 }
 
-
-.hover-scale{
+.hover-scale {
   transition: ease 0.2s;
-  &:hover{
+  &:hover {
     transform: scale(1.05);
   }
 }
 
-
-.fixed-logo-left{
+.fixed-logo-left {
   position: fixed;
   left: 10px;
   top: 10px;
@@ -68,7 +66,7 @@ body {
   cursor: pointer;
 }
 
-.fullscreen-center{
+.fullscreen-center {
   width: 100%;
   min-height: calc(100vh - $nav-height);
   display: flex;
@@ -76,16 +74,17 @@ body {
   align-items: center;
 }
 
-form{
+form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 5px;  
-  gap:1rem;
+  padding: 5px;
+  gap: 1rem;
 }
 
-input,select{
+input,
+select {
   border: none;
   border: 2px solid $text1;
   background-color: transparent;
@@ -94,38 +93,28 @@ input,select{
   padding: 5px;
   outline: none;
   width: calc(100% - 12px);
-  -ms-box-sizing:content-box;
-  -moz-box-sizing:content-box;
-  -webkit-box-sizing:content-box; 
-  box-sizing:content-box;
+  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
 }
 
-input[type="submit"], button[type="submit"]{
+input[type="submit"],
+button[type="submit"] {
   background-color: $text1;
   color: $background;
   font-size: 1.2rem;
-  padding: .5rem 2rem;
+  padding: 0.5rem 2rem;
   outline: none;
   border: 0;
   cursor: pointer;
 
   //disabled
-  &:disabled,&[disabled]{
+  &:disabled,
+  &[disabled] {
     opacity: 0.5;
-    cursor:default;
+    cursor: default;
   }
-}
-
-.flex-row, .flex-col{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-.flex-col{
-  flex-direction: column;
 }
 
 .selectDisable {
@@ -136,23 +125,23 @@ input[type="submit"], button[type="submit"]{
   user-select: none;
 }
 
-.green{
-  color:$green;
+.green {
+  color: $green;
 }
 
-.red{
-  color:$red;
+.red {
+  color: $red;
 }
 
-.illustration{
-    width: 50vw;
-    max-width: 500px;
+.illustration {
+  width: 50vw;
+  max-width: 500px;
 
-    @include width-under(600px){
-        display: none;
-    }
+  @include width-under(600px) {
+    display: none;
+  }
 }
 
-.w-100{
+.w-100 {
   width: 100%;
 }

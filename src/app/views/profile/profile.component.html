@@ -1,33 +1,46 @@
-<section class="flex-col">
-    <app-user-card *ngIf="verified" [username]="username" [status]="status" class="card"></app-user-card>
+<section class="flex-col center">
+  <app-user-card
+    *ngIf="verified"
+    [username]="username"
+    [status]="status"
+    class="card"
+  ></app-user-card>
 
-    <div class="flex-col group">
-        <h2>Infos <span *ngIf="!verified">- not verified</span></h2>
-        <div class="flex-col">
-            <p>{{email}}</p>
-            <p *ngIf="!verified">you need to be manually verified to use the website... just ask</p>
-        </div>
+  <div class="flex-col center group">
+    <h2>Infos <span *ngIf="!verified">- not verified</span></h2>
+    <div class="flex-col">
+      <p>{{ email }}</p>
+      <p *ngIf="!verified">
+        you need to be manually verified to use the website... just ask
+      </p>
     </div>
+  </div>
 
-    <div class="flex-col group">
-        <h2>Change Informations</h2>
-        <div class="flex-col">
-            <h3>Username</h3>
-            <input type="text" [(ngModel)]="username" placeholder="Username">
-            <button (click)="changeUsername()" class="black-btn">Change Username</button>
-            <h3>Password</h3>
-            <input type="password" [(ngModel)]="oldPassword" placeholder="Password" >
-            <input type="password" [(ngModel)]="newPassword" placeholder="New Password">
-            <button (click)="changePassword()" class="black-btn">Change Password</button>
-        </div>
+  <div class="flex-col center group">
+    <h2>Change Informations</h2>
+    <div class="flex-col center">
+      <h3>Username</h3>
+      <input type="text" [(ngModel)]="username" placeholder="Username" />
+      <button (click)="changeUsername()" class="black-btn">
+        Change Username
+      </button>
+      <h3>Password</h3>
+      <input type="password" [(ngModel)]="oldPassword" placeholder="Password" />
+      <input
+        type="password"
+        [(ngModel)]="newPassword"
+        placeholder="New Password"
+      />
+      <button (click)="changePassword()" class="black-btn">
+        Change Password
+      </button>
     </div>
+  </div>
 
-
-    <div class="flex-col group">
-        <h2>Danger Zone</h2>
-        <div class="flex-col">
-            <button (click)="logout()" class="black-btn">Logout</button>
-        </div>
+  <div class="flex-col center group">
+    <h2>Danger Zone</h2>
+    <div class="flex-col center">
+      <button (click)="logout()" class="black-btn">Logout</button>
     </div>
-
+  </div>
 </section>
