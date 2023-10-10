@@ -12,11 +12,15 @@
   </div>
   <div class="flex-row middle reactions">
     <p
-      *ngFor="let reaction of quote.reactions"
-      (click)="onRemoveReaction(reaction)"
-      [ngClass]="{ mine: reaction.isMine }"
+      *ngFor="let reaction of differentReactions"
+      (click)="
+        userHasReacted === reaction.emoji
+          ? onRemoveReaction()
+          : onReactionSelected(reaction.emoji)
+      "
+      [ngClass]="{ mine: userHasReacted === reaction.emoji }"
     >
-      {{ reaction.emoji }}
+      {{ reaction.emoji }} {{ reaction.count }}
     </p>
   </div>
 </div>

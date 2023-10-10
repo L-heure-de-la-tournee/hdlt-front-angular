@@ -34,3 +34,8 @@ export interface Reaction {
   emoji: string;
   isMine: boolean;
 }
+
+export interface SmallReaction {
+  emoji: string;
+  count: number;
+}
