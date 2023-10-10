@@ -10,7 +10,7 @@ export class ReactionPickerComponent {
 
   showReactionOptions = false;
 
-  options = ['👎', '👍', '😢', '😡', '😆', '❤️'];
+  options = ['👎', '👍', '😢', '😡', '😯', '😆', '❤️'];
 
   onSelectReaction(reaction: string) {
     this.reactionSelected.emit(reaction);
