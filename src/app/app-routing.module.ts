@@ -12,25 +12,53 @@ import { IsVerfiedAuthGuard } from './services/isverified.guard';
 import { NewQuoteComponent } from './views/new-quote/new-quote.component';
 import { NewComponent } from './views/new/new.component';
 import { QuotesComponent } from './views/quotes/quotes.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: "home", component: HomeComponent },
-  { path:"login", component: LoginComponent},
-  { path: "signup", component: SignupComponent },
-  { path: "ongoing", component: OngoingComponent, canActivate: [IsVerfiedAuthGuard] },
-  { path: "quotes", component: QuotesComponent, canActivate: [IsVerfiedAuthGuard] },
-  { path: "history", component: HistoryComponent, canActivate: [IsVerfiedAuthGuard] },
-  { path: "rules", component: RulesComponent, canActivate: [IsVerfiedAuthGuard] },
-  { path: "profile", component: ProfileComponent},
-  { path: "new", component: NewComponent, canActivate: [IsVerfiedAuthGuard]},
-  { path: "new/quote", component: NewQuoteComponent, canActivate: [IsVerfiedAuthGuard]},
-  { path: "new/status", component: NewStatusComponent, canActivate: [IsVerfiedAuthGuard]},
-  { path: "**", redirectTo: "/home", pathMatch: "full" },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  {
+    path: 'ongoing',
+    component: OngoingComponent,
+    canActivate: [IsVerfiedAuthGuard],
+  },
+  {
+    path: 'quotes',
+    component: QuotesComponent,
+    canActivate: [IsVerfiedAuthGuard],
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
+    canActivate: [IsVerfiedAuthGuard],
+  },
+  {
+    path: 'rules',
+    component: RulesComponent,
+    canActivate: [IsVerfiedAuthGuard],
+  },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'new', component: NewComponent, canActivate: [IsVerfiedAuthGuard] },
+  {
+    path: 'new/quote',
+    component: NewQuoteComponent,
+    canActivate: [IsVerfiedAuthGuard],
+  },
+  {
+    path: 'new/status',
+    component: NewStatusComponent,
+    canActivate: [IsVerfiedAuthGuard],
+  },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: true }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

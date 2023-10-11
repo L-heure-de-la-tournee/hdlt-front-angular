@@ -6,16 +6,20 @@ import { AchivementsServices } from './services/achievements.services';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent  implements OnInit{
+export class AppComponent implements OnInit {
   title = 'hdlt';
 
-  constructor(private router:Router,private hdlt:HDLTServices,private ach:AchivementsServices) {}
+  constructor(
+    private router: Router,
+    private hdlt: HDLTServices,
+    private ach: AchivementsServices
+  ) {}
 
   async ngOnInit(): Promise<void> {
     let allstatus = await this.hdlt.GetAllStatus();
     await this.ach.SetupComparisonData(allstatus);
-    this.router.navigate(['/home'])
+    this.router.navigate(['/home']);
   }
 }
