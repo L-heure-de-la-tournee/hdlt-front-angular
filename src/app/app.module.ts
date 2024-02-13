@@ -23,6 +23,10 @@ import { NewComponent } from './views/new/new.component';
 import { QuoteCardComponent } from './components/quote-card/quote-card.component';
 import { ReactionPickerComponent } from './components/reaction-picker/reaction-picker.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { BaseModalComponent } from './components/base-modal/base-modal.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { ModalInjectorComponent } from './components/modal-injector/modal-injector.component';
 
 @NgModule({
   declarations: [
@@ -45,13 +49,23 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     NewComponent,
     QuoteCardComponent,
     ReactionPickerComponent,
+    BaseModalComponent,
+    ModalComponent,
+    ConfirmModalComponent,
+    ModalInjectorComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule, ServiceWorkerModule.register('ngsw-worker.js', {
-  enabled: !isDevMode(),
-  // Register the ServiceWorker as soon as the application is stable
-  // or after 30 seconds (whichever comes first).
-  registrationStrategy: 'registerWhenStable:30000'
-})],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
